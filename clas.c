@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-struct pokemon {char * name; int hp;};
-struct pokemon pikachu;
-
+#include "clas.h"
 
 int healthgen(){
   int x = rand();
@@ -12,40 +9,26 @@ int healthgen(){
   return x;
 }
 
-char* namegen(char *s){
-  char a[10] = "aaaaa";
-  int ctr = 0;
-  while(ctr < 5){
-    char x = rand();
-    printf("old: %d\n", x);
-    x = (x % 26) + 65;
-    printf("new: %d\n", x);
-    *(a+ctr) = x;
-    ctr++;
-    printf("%d\n", x);
-  }
-  printf("%s\n", a);
-  *s = *a;
-  return s;
+char* namegen(){
+  char *pokes[10] = {"Pikachu", "Rayquaza", "Ivan" ,"Simon", "K","DW","Brown","Voltorb","Pidgey","Rattata"};
+  return pokes[(rand()%10)] ;
 }
 
 struct pokemon ditto(){
-  pikachu.name = namegen(pikachu.name);
+  pikachu.name = namegen();
   pikachu.hp = healthgen();
   return pikachu;
 }
 
-
-
-struct pokemon reachStats(){
-  printf("%d\n", pikachu.hp);
-  printf("%s\n", pikachu.name);
+void reachStats(){
+  printf("Pokemon Name: %s, Pokemon HP: %d\n", pikachu.name, pikachu.hp);
 }
 
-int main(){
-  srand(time(NULL));
-  ditto();
-  reachStats();
-  return 0;
-  
+void changeHP(int newHP){
+  pikachu.hp = newHP;
 }
+
+void changeName(char *newName){
+  pikachu.name = newName;
+}
+
